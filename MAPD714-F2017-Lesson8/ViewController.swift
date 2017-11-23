@@ -10,16 +10,31 @@ import UIKit
 
 class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
 
+    
+    private let movies = ["BatMan vs SuperMan" , "Blade Runner 2019", "Thor:Ragnork", "Justice League", "WonderWoman" , "Dark Tower", "Star Wars: The Last Jedi"]
+    
+    let simpleTableIdentifier = "SimpleTableIdentifier"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+          }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movies.count
     }
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier: simpleTableIdentifier)
+        
+        if (cell == nil){
+            cell = UITableViewCell(style: .default, reuseIdentifier: simpleTableIdentifier)
+        }
+        
+        cell?.textLabel?.text = movies[indexPath.row]
+        return cell!
+    }
 
 }
 
